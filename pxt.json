@@ -1,5 +1,5 @@
 {
-    "name": "無線A",
+    "name": "LEDバトン",
     "description": "",
     "dependencies": {
         "core": "*",

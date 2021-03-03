@@ -4,7 +4,9 @@ function ledOff () {
     pins.digitalWritePin(DigitalPin.P2, 0)
 }
 input.onButtonPressed(Button.A, function () {
-    radio.sendString("B")
+    if (MyID == Users[0]) {
+        radio.sendString("" + (nextPersonID))
+    }
 })
 radio.onReceivedString(function (receivedString) {
     basic.showString(receivedString)
@@ -15,15 +17,19 @@ radio.onReceivedString(function (receivedString) {
         basic.pause(500)
         pins.digitalWritePin(DigitalPin.P2, 1)
         basic.pause(500)
-        radio.sendString("C")
+        radio.sendString("" + (nextPersonID))
     } else {
         ledOff()
     }
 })
+let nextPersonID = ""
 let MyID = ""
+let Users: string[] = []
 ledOff()
 radio.setGroup(1)
-MyID = "A"
+Users = ["A", "B", "C"]
+MyID = Users[0]
+nextPersonID = Users[1]
 basic.forever(function () {
 	
 })
