@@ -4,32 +4,32 @@ function ledOff () {
     pins.digitalWritePin(DigitalPin.P2, 0)
 }
 input.onButtonPressed(Button.A, function () {
-    if (MyID == Users[0]) {
-        radio.sendString("" + (nextPersonID))
+    if (MyWord == Words[0]) {
+        radio.sendString("" + (NextWord))
     }
 })
 radio.onReceivedString(function (receivedString) {
     basic.showString(receivedString)
-    if (receivedString == MyID) {
+    if (receivedString == MyWord) {
         pins.digitalWritePin(DigitalPin.P0, 1)
         basic.pause(500)
         pins.digitalWritePin(DigitalPin.P1, 1)
         basic.pause(500)
         pins.digitalWritePin(DigitalPin.P2, 1)
         basic.pause(500)
-        radio.sendString("" + (nextPersonID))
+        radio.sendString("" + (NextWord))
     } else {
         ledOff()
     }
 })
-let nextPersonID = ""
-let MyID = ""
-let Users: string[] = []
+let NextWord = ""
+let MyWord = ""
+let Words: string[] = []
 ledOff()
 radio.setGroup(1)
-Users = ["A", "B", "C"]
-MyID = Users[0]
-nextPersonID = Users[1]
+Words = ["A", "B", "C"]
+MyWord = Words[0]
+NextWord = Words[1]
 basic.forever(function () {
 	
 })
